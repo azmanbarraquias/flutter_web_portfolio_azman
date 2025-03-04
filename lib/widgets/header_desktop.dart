@@ -24,7 +24,7 @@ class HeaderDesktop extends StatelessWidget {
       ),
       child: Row(
         children: [
-          SiteLogo(onTap: onLogoTap,),
+          SiteLogo(onTap: onLogoTap),
           Spacer(),
           ...List.generate(navItems.length, (i) {
             return Padding(

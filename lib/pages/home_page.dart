@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_web_portfolio_azman/constants/colors.dart';
 import 'package:flutter_web_portfolio_azman/widgets/drawer_mobile.dart';
-import '../constants/nav_items.dart';
+import 'package:flutter_web_portfolio_azman/widgets/main_desktop.dart';
+import 'package:flutter_web_portfolio_azman/widgets/main_mobile.dart';
 import '../constants/size.dart';
+import '../constants/skill_items.dart';
 import '../widgets/header_desktop.dart';
 import '../widgets/header_mobile.dart';
+import '../widgets/skills_desktop.dart';
+import '../widgets/skills_mobile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,12 +23,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final screenWidth = screenSize.width;
+    final screenHeight = screenSize.height;
+
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: CustomColor.scaffoldBg,
-          endDrawer: constraints.maxWidth >= kMinDesktopWidth ? null : DrawerMobile(),
+          endDrawer:
+              constraints.maxWidth >= kMinDesktopWidth ? null : DrawerMobile(),
           body: ListView(
             scrollDirection: Axis.vertical,
             children: [
@@ -37,11 +47,34 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
 
+              if (constraints.maxWidth >= kMinDesktopWidth)
+                MainDesktop()
+              else
+                MainMobile(),
+
               // Skills
               Container(
-                height: 500,
-                width: double.infinity,
-                color: Color.fromRGBO(77, 85, 204, 1),
+                width: screenWidth,
+                color: CustomColor.bgLight1,
+                padding: EdgeInsets.fromLTRB(25, 20, 25, 60),
+                child: Column(
+                  children: [
+                    Text(
+                      'What I can do',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: CustomColor.whitePrimary,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    // Platforms and Programming
+                    if (constraints.maxWidth >= kMedDesktopWidth)
+                      SkillsDesktop()
+                    else
+                      SkillsMobile(),
+                  ],
+                ),
               ),
 
               // Project
