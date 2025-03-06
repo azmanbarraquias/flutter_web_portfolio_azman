@@ -10,6 +10,7 @@ class SkillsDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           constraints: BoxConstraints(maxWidth: 450),

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_web_portfolio_azman/constants/colors.dart';
+import 'package:flutter_web_portfolio_azman/widgets/custom_text_field.dart';
 import 'package:flutter_web_portfolio_azman/widgets/drawer_mobile.dart';
-import 'package:flutter_web_portfolio_azman/widgets/main_desktop.dart';
-import 'package:flutter_web_portfolio_azman/widgets/main_mobile.dart';
 import '../constants/size.dart';
-import '../constants/skill_items.dart';
+import '../utils/project_utils.dart';
 import '../widgets/header_desktop.dart';
 import '../widgets/header_mobile.dart';
+import '../widgets/main_desktop.dart';
+import '../widgets/main_mobile.dart';
+import '../widgets/project_card.dart';
+import '../widgets/projects_section.dart' show ProjectsSection;
 import '../widgets/skills_desktop.dart';
 import '../widgets/skills_mobile.dart';
 
@@ -46,98 +48,87 @@ class _HomePageState extends State<HomePage> {
                     scaffoldKey.currentState?.openEndDrawer();
                   },
                 ),
-              //
-              // if (constraints.maxWidth >= kMinDesktopWidth)
-              //   MainDesktop()
-              // else
-              //   MainMobile(),
-              //
-              // // Skills
-              // Container(
-              //   width: screenWidth,
-              //   color: CustomColor.bgLight1,
-              //   padding: EdgeInsets.fromLTRB(25, 20, 25, 60),
-              //   child: Column(
-              //     children: [
-              //       Text(
-              //         'What I can do',
-              //         style: TextStyle(
-              //           fontSize: 24,
-              //           fontWeight: FontWeight.bold,
-              //           color: CustomColor.whitePrimary,
-              //         ),
-              //       ),
-              //       SizedBox(height: 10),
-              //       // Platforms and Programming
-              //       if (constraints.maxWidth >= kMedDesktopWidth)
-              //         SkillsDesktop()
-              //       else
-              //         SkillsMobile(),
-              //     ],
-              //   ),
-              // ),
 
-              // Project
+              if (constraints.maxWidth >= kMinDesktopWidth)
+                MainDesktop()
+              else
+                MainMobile(),
+
+              // Skills
               Container(
                 width: screenWidth,
+                color: CustomColor.bgLight1,
                 padding: EdgeInsets.fromLTRB(25, 20, 25, 60),
                 child: Column(
                   children: [
-                    // Work Projects title
                     Text(
-                      'Work projects title',
+                      'What I can do',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: CustomColor.whitePrimary,
                       ),
                     ),
-
-                    // Work projects cards
-                    Container(
-                      height: 280,
-                      width: 250,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: CustomColor.bgLight2,
-                      ),
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            height: 140,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                            'assets/images/Gemini_Generated_Image_h36tdph36tdph36t.jpg',
-                          ),
-                          Text(
-                            'Title',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 24,
-                              color: CustomColor.whitePrimary,
-                            ),
-                          ),
-                          Text(
-                            'Some dummy subtitle about the project',
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: CustomColor.whiteSecondary,
-                            ),
-
-                          ),
-                        ],
-                      ),
-                    ),
+                    SizedBox(height: 10),
+                    // Platforms and Programming
+                    if (constraints.maxWidth >= kMedDesktopWidth)
+                      SkillsDesktop()
+                    else
+                      SkillsMobile(),
                   ],
                 ),
               ),
 
+              // Work
+              SizedBox(height: 20),
+
+              ProjectsSection(),
+
+              // Hobby
+
               // Contact
               Container(
-                height: 500,
-                width: double.infinity,
-                color: Color.fromRGBO(181, 168, 213, 1),
+                padding: EdgeInsets.fromLTRB(25, 20, 25, 60),
+                color: CustomColor.bgLight1,
+                child: Column(
+                  children: [
+                    // title
+                    Text(
+                      "Get in touch",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                        color: CustomColor.whitePrimary,
+                      ),
+                    ),
+                    SizedBox(height: 50),
+                    Row(
+                      children: [
+                        Flexible(
+                          child: CustomTextField(
+                            controller: TextEditingController(),
+                            hintText: 'Your name',
+                          ),
+                        ),
+                        SizedBox(width: 10,),
+                        Flexible(
+                          child: CustomTextField(
+                            controller: TextEditingController(),
+                            hintText: 'Your email',
+                          ),
+                        ),
+
+                      ],
+                    ),
+                    SizedBox(height: 10,),
+                    CustomTextField(
+                      controller: TextEditingController(),
+                      hintText: 'Your message',
+                      maxLines: 20,
+                    ),
+                  ],
+
+                ),
               ),
 
               // Footer

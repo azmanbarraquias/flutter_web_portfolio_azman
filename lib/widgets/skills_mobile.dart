@@ -52,16 +52,21 @@ class SkillsMobile extends StatelessWidget {
                   label: Text(programmingLang[i].title),
                   avatar: ShaderMask(
                     shaderCallback: (Rect bounds) {
-                      return  programmingLang[i].unlock == false ? LinearGradient(
-                        colors: [
-                          CustomColor.scaffoldBg.withValues(alpha: 0.9),
-                          CustomColor.scaffoldBg.withAlpha((0.9 * 255).toInt()),
-                        ],
-                      ).createShader(bounds)  : LinearGradient(colors: [
-                        CustomColor.scaffoldBg.withValues(alpha: 0),
-                        CustomColor.scaffoldBg.withValues(alpha: 0),
-
-                      ]).createShader(bounds);
+                      return programmingLang[i].unlock == false
+                          ? LinearGradient(
+                            colors: [
+                              CustomColor.scaffoldBg.withValues(alpha: 0.9),
+                              CustomColor.scaffoldBg.withAlpha(
+                                (0.9 * 255).toInt(),
+                              ),
+                            ],
+                          ).createShader(bounds)
+                          : LinearGradient(
+                            colors: [
+                              CustomColor.scaffoldBg.withValues(alpha: 0),
+                              CustomColor.scaffoldBg.withValues(alpha: 0),
+                            ],
+                          ).createShader(bounds);
                     },
                     blendMode: BlendMode.srcATop,
                     child: SvgPicture.asset(

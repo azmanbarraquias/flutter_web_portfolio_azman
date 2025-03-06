@@ -19,27 +19,23 @@ class ProjectUtils {
 List<ProjectUtils> hobbyProject = [
   ProjectUtils(
     image: 'assets/images/Gemini_Generated_Image_8zdska8zdska8zds.jpg',
-    title: 'Turo Agham',
-    subtitle: 'AR Game',
+    title: 'Project 1',
+    subtitle: 'Project 1 Description',
   ),
   ProjectUtils(
-    image: 'assets/images/Gemini_Generated_Image_8zdska8zdska8zds.jpg',
-    title: 'Turo Agham',
-    subtitle: 'AR Game',
+    image: 'assets/images/Gemini_Generated_Image_nnrt6onnrt6onnrt.jpg',
+    title: 'Project 2',
+    subtitle: 'Project 2 Description',
   ),
   ProjectUtils(
-    image: 'assets/images/Gemini_Generated_Image_8zdska8zdska8zds.jpg',
-    title: 'Turo Agham',
-    subtitle: 'AR Game',
+    image: 'assets/images/Gemini_Generated_Image_xqelm5xqelm5xqel.jpg',
+    title: 'Project 3',
+    subtitle: 'Project 3 Description',
   ),
   ProjectUtils(
-    image: 'assets/images/Gemini_Generated_Image_8zdska8zdska8zds.jpg',
-    title: 'Turo Agham',
-    subtitle: 'AR Game',
+    image: 'assets/images/Gemini_Generated_Image_9dpo2f9dpo2f9dpo.jpg',
+    title: 'Project 4',
+    subtitle: 'Project 4 Description',
   ),
-  ProjectUtils(
-    image: 'assets/images/Gemini_Generated_Image_8zdska8zdska8zds.jpg',
-    title: 'Turo Agham',
-    subtitle: 'AR Game',
-  ),
+
 ];
