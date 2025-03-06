@@ -14,11 +14,11 @@ List<DevIcon> platformItem = [
 List<DevIcon> programmingLang = [
   DevIcon(title: 'Dart', svgIcon: 'assets/svg/dart-original.svg'),
   DevIcon(title: 'Java', svgIcon: 'assets/svg/java-original.svg'),
-  DevIcon(title: 'C#', svgIcon: 'assets/svg/csharp-original.svg'),
+  DevIcon(title: 'C#', svgIcon: 'assets/svg/csharp-original.svg', unlock: false),
   DevIcon(title: 'Swift', svgIcon: 'assets/svg/swift-original.svg'),
   DevIcon(title: 'Dart', svgIcon: 'assets/svg/dart-original.svg'),
   DevIcon(title: 'C#', svgIcon: 'assets/svg/csharp-original.svg'),
-  DevIcon(title: 'Swift', svgIcon: 'assets/svg/swift-original.svg'),
+  DevIcon(title: 'Swift', svgIcon: 'assets/svg/swift-original.svg', unlock: false),
 ];
 
 class DevIcon {

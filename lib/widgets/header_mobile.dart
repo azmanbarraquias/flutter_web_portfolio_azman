@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio_azman/constants/colors.dart';
 import 'package:flutter_web_portfolio_azman/widgets/site_logo.dart';
 
-import '../styles/styles.dart';
+import '../pages/styles/styles.dart';
 
 class HeaderMobile extends StatelessWidget {
   const HeaderMobile({super.key, this.onLogoTap, this.onMenuTap});

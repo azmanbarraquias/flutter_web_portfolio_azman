@@ -46,42 +46,91 @@ class _HomePageState extends State<HomePage> {
                     scaffoldKey.currentState?.openEndDrawer();
                   },
                 ),
+              //
+              // if (constraints.maxWidth >= kMinDesktopWidth)
+              //   MainDesktop()
+              // else
+              //   MainMobile(),
+              //
+              // // Skills
+              // Container(
+              //   width: screenWidth,
+              //   color: CustomColor.bgLight1,
+              //   padding: EdgeInsets.fromLTRB(25, 20, 25, 60),
+              //   child: Column(
+              //     children: [
+              //       Text(
+              //         'What I can do',
+              //         style: TextStyle(
+              //           fontSize: 24,
+              //           fontWeight: FontWeight.bold,
+              //           color: CustomColor.whitePrimary,
+              //         ),
+              //       ),
+              //       SizedBox(height: 10),
+              //       // Platforms and Programming
+              //       if (constraints.maxWidth >= kMedDesktopWidth)
+              //         SkillsDesktop()
+              //       else
+              //         SkillsMobile(),
+              //     ],
+              //   ),
+              // ),
 
-              if (constraints.maxWidth >= kMinDesktopWidth)
-                MainDesktop()
-              else
-                MainMobile(),
-
-              // Skills
+              // Project
               Container(
                 width: screenWidth,
-                color: CustomColor.bgLight1,
                 padding: EdgeInsets.fromLTRB(25, 20, 25, 60),
                 child: Column(
                   children: [
+                    // Work Projects title
                     Text(
-                      'What I can do',
+                      'Work projects title',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: CustomColor.whitePrimary,
                       ),
                     ),
-                    SizedBox(height: 10),
-                    // Platforms and Programming
-                    if (constraints.maxWidth >= kMedDesktopWidth)
-                      SkillsDesktop()
-                    else
-                      SkillsMobile(),
+
+                    // Work projects cards
+                    Container(
+                      height: 280,
+                      width: 250,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: CustomColor.bgLight2,
+                      ),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            height: 140,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            'assets/images/Gemini_Generated_Image_h36tdph36tdph36t.jpg',
+                          ),
+                          Text(
+                            'Title',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 24,
+                              color: CustomColor.whitePrimary,
+                            ),
+                          ),
+                          Text(
+                            'Some dummy subtitle about the project',
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: CustomColor.whiteSecondary,
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-              ),
-
-              // Project
-              Container(
-                height: 500,
-                width: double.infinity,
-                color: Color.fromRGBO(122, 115, 209, 1),
               ),
 
               // Contact
