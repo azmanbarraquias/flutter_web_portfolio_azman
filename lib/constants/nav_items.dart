@@ -20,11 +20,9 @@ List<NavItem> navItems = [
   NavItem(navTitle: "Home", navIcon: Icons.home),
   NavItem(navTitle: "Skills", navIcon: Icons.handyman_outlined),
   NavItem(navTitle: "Projects", navIcon: Icons.apps),
-  NavItem(navTitle: "Blog", navIcon: Icons.web),
   NavItem(navTitle: "Contact", navIcon: Icons.quick_contacts_mail),
-
+  // NavItem(navTitle: "Blog", navIcon: Icons.web),
 ];
-
 
 class NavItem {
   final String navTitle;

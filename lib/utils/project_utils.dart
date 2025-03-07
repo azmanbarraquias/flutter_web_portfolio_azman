@@ -37,5 +37,4 @@ List<ProjectUtils> hobbyProject = [
     title: 'Project 4',
     subtitle: 'Project 4 Description',
   ),
-
 ];

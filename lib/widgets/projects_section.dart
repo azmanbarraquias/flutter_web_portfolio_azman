@@ -10,8 +10,9 @@ class ProjectsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
-    final screenHeight = screenSize.height;
-    return           Container(
+    // final screenHeight = screenSize.height;
+
+    return Container(
       width: screenWidth,
       padding: EdgeInsets.fromLTRB(25, 20, 25, 60),
       child: Column(
@@ -66,8 +67,6 @@ class ProjectsSection extends StatelessWidget {
               ],
             ),
           ),
-
-
         ],
       ),
     );

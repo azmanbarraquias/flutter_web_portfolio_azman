@@ -15,12 +15,16 @@ class HeaderMobile extends StatelessWidget {
     return Container(
       height: 50,
       margin: EdgeInsets.fromLTRB(40, 5, 20, 5),
+      padding: EdgeInsets.symmetric(horizontal: 30).copyWith(right: 0),
       decoration: kHeaderDecoration,
       child: Row(
         children: [
           SiteLogo(onTap: onLogoTap),
           Spacer(),
-          IconButton(onPressed: onMenuTap, icon: Icon(Icons.menu, color: CustomColor.whitePrimary,)),
+          IconButton(
+            onPressed: onMenuTap,
+            icon: Icon(Icons.menu, color: CustomColor.whitePrimary),
+          ),
           SizedBox(width: 8),
         ],
       ),

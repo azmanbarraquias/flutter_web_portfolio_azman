@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio_azman/constants/colors.dart';
-import 'package:flutter_web_portfolio_azman/widgets/custom_text_field.dart';
 import 'package:flutter_web_portfolio_azman/widgets/drawer_mobile.dart';
 import '../constants/size.dart';
-import '../utils/project_utils.dart';
+import '../widgets/contact_section.dart';
+import '../widgets/footer_section.dart';
 import '../widgets/header_desktop.dart';
 import '../widgets/header_mobile.dart';
 import '../widgets/main_desktop.dart';
 import '../widgets/main_mobile.dart';
-import '../widgets/project_card.dart';
-import '../widgets/projects_section.dart' show ProjectsSection;
+import '../widgets/projects_section.dart';
 import '../widgets/skills_desktop.dart';
 import '../widgets/skills_mobile.dart';
 
@@ -22,12 +21,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final scrollController = ScrollController();
+  final List<GlobalKey> navbarKeys = List.generate(4, (i) => GlobalKey());
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
-    final screenHeight = screenSize.height;
+    // final screenHeight = screenSize.height;
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
@@ -35,112 +36,91 @@ class _HomePageState extends State<HomePage> {
           key: scaffoldKey,
           backgroundColor: CustomColor.scaffoldBg,
           endDrawer:
-              constraints.maxWidth >= kMinDesktopWidth ? null : DrawerMobile(),
-          body: ListView(
+              constraints.maxWidth >= kMinDesktopWidth
+                  ? null
+                  : DrawerMobile(
+                    onNavItemTap: (i) {
+                      scaffoldKey.currentState?.closeEndDrawer();
+                      scrollToSection(i);
+                    },
+                  ),
+          body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            children: [
-              if (constraints.maxWidth >= kMinDesktopWidth)
-                HeaderDesktop(onLogoTap: () {}, onMenuTap: () {})
-              else
-                HeaderMobile(
-                  onLogoTap: () {},
-                  onMenuTap: () {
-                    scaffoldKey.currentState?.openEndDrawer();
-                  },
-                ),
+            child: Column(
+              children: [
+                SizedBox(key: navbarKeys[0]),
+                if (constraints.maxWidth >= kMinDesktopWidth)
+                  HeaderDesktop(
+                    onLogoTap: () {},
+                    onNavItemTap: (i) => scrollToSection(i),
+                  )
+                else
+                  HeaderMobile(
+                    onLogoTap: () {},
+                    onMenuTap: () {
+                      scaffoldKey.currentState?.openEndDrawer();
+                    },
+                  ),
 
-              if (constraints.maxWidth >= kMinDesktopWidth)
-                MainDesktop()
-              else
-                MainMobile(),
+                if (constraints.maxWidth >= kMinDesktopWidth)
+                  MainDesktop()
+                else
+                  MainMobile(),
 
-              // Skills
-              Container(
-                width: screenWidth,
-                color: CustomColor.bgLight1,
-                padding: EdgeInsets.fromLTRB(25, 20, 25, 60),
-                child: Column(
-                  children: [
-                    Text(
-                      'What I can do',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: CustomColor.whitePrimary,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    // Platforms and Programming
-                    if (constraints.maxWidth >= kMedDesktopWidth)
-                      SkillsDesktop()
-                    else
-                      SkillsMobile(),
-                  ],
-                ),
-              ),
-
-              // Work
-              SizedBox(height: 20),
-
-              ProjectsSection(),
-
-              // Hobby
-
-              // Contact
-              Container(
-                padding: EdgeInsets.fromLTRB(25, 20, 25, 60),
-                color: CustomColor.bgLight1,
-                child: Column(
-                  children: [
-                    // title
-                    Text(
-                      "Get in touch",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                        color: CustomColor.whitePrimary,
-                      ),
-                    ),
-                    SizedBox(height: 50),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: CustomTextField(
-                            controller: TextEditingController(),
-                            hintText: 'Your name',
-                          ),
+                // Skills
+                SizedBox(key: navbarKeys[1]),
+                Container(
+                  width: screenWidth,
+                  color: CustomColor.bgLight1,
+                  padding: EdgeInsets.fromLTRB(25, 20, 25, 60),
+                  child: Column(
+                    children: [
+                      Text(
+                        'What I can do',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: CustomColor.whitePrimary,
                         ),
-                        SizedBox(width: 10,),
-                        Flexible(
-                          child: CustomTextField(
-                            controller: TextEditingController(),
-                            hintText: 'Your email',
-                          ),
-                        ),
-
-                      ],
-                    ),
-                    SizedBox(height: 10,),
-                    CustomTextField(
-                      controller: TextEditingController(),
-                      hintText: 'Your message',
-                      maxLines: 20,
-                    ),
-                  ],
-
+                      ),
+                      SizedBox(height: 10),
+                      // Platforms and Programming
+                      if (constraints.maxWidth >= kMedDesktopWidth)
+                        SkillsDesktop()
+                      else
+                        SkillsMobile(),
+                    ],
+                  ),
                 ),
-              ),
 
-              // Footer
-              Container(
-                height: 500,
-                width: double.infinity,
-                color: Colors.purpleAccent,
-              ),
-            ],
+                // Work
+                SizedBox(height: 20),
+
+                ProjectsSection(key: navbarKeys[2]),
+
+                // Hobby
+                SizedBox(height: 20),
+                // Contact
+                ContactSection(key: navbarKeys[3]),
+
+                // Footer
+                FooterSection(),
+              ],
+            ),
           ),
         );
       },
+    );
+  }
+
+  void scrollToSection(int navIndex) {
+    if (navIndex == 4) return;
+
+    final key = navbarKeys[navIndex];
+    Scrollable.ensureVisible(
+      key.currentContext!,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
     );
   }
 }
