@@ -29,13 +29,19 @@ class _TextAnimationScreenState extends State<TextAnimationScreen> {
 
   @override
   void initState() {
-    super.initState();
     _startTypingAnimation();
     _startCursorBlink();
+    super.initState();
+  }
+
+  bool isMobile(BuildContext context) {
+    return MediaQuery.of(context).size.width <
+        600; // Adjust breakpoint if needed
   }
 
   @override
   void dispose() {
+    if (!mounted) return;
     typingTimer?.cancel();
     cursorTimer?.cancel();
     super.dispose();
@@ -46,7 +52,10 @@ class _TextAnimationScreenState extends State<TextAnimationScreen> {
       setState(() {
         if (isDeleting) {
           if (displayedText.isNotEmpty) {
-            displayedText = displayedText.substring(0, displayedText.length - 1);
+            displayedText = displayedText.substring(
+              0,
+              displayedText.length - 1,
+            );
           } else {
             isDeleting = false;
             charIndex = 0;
@@ -84,13 +93,16 @@ class _TextAnimationScreenState extends State<TextAnimationScreen> {
         children: [
           TextSpan(
             text: displayedText,
-            style: const TextStyle(fontSize: 40, color: Colors.white),
+            style: TextStyle(
+              fontSize: isMobile(context) ? 25 : 37,
+              color: Colors.white,
+            ),
           ),
           if (showCursor)
-            const TextSpan(
+            TextSpan(
               text: "|",
               style: TextStyle(
-                fontSize: 40,
+                fontSize: isMobile(context) ? 25 : 37,
                 color: Colors.red,
                 fontWeight: FontWeight.bold,
               ), // Change cursor color here

@@ -1,22 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.black,
-        body: Center(child: HoverUnderlineText("Click Me!")),
-      ),
-    );
-  }
-}
-
 class HoverUnderlineText extends StatefulWidget {
   final String text;
   final Color color;
@@ -38,6 +21,7 @@ class _HoverUnderlineTextState extends State<HoverUnderlineText> {
   bool _isClicked = false;
 
   void _handleClick() {
+    if (!mounted) return;
     setState(() {
       _isClicked = true;
     });
@@ -46,6 +30,13 @@ class _HoverUnderlineTextState extends State<HoverUnderlineText> {
         _isClicked = false;
       });
     });
+  }
+
+
+  @override
+  void dispose() {
+    if (!mounted) return;
+    super.dispose();
   }
 
   @override

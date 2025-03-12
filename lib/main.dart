@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio_azman/pages/home_page.dart';
 import 'dart:html' as html;
 
+import 'dart:js_interop';
+
+@JS()
+external void clearLocalStorage();
+
+@JS()
+external void clearSessionStorage();
 
 void main() {
   clearBrowserCache();
@@ -9,8 +16,8 @@ void main() {
 }
 
 void clearBrowserCache() {
-  html.window.localStorage.clear();
-  html.window.sessionStorage.clear();
+  clearLocalStorage();
+  clearSessionStorage();
 }
 
 class MyApp extends StatelessWidget {

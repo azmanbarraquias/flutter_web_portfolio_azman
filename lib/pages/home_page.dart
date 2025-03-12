@@ -12,6 +12,7 @@ import '../widgets/projects_section.dart';
 import '../widgets/skills_desktop.dart';
 import '../widgets/skills_mobile.dart';
 
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -29,6 +30,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     scrollController.addListener(_onScroll);
+  }
+
+  bool isMobile(BuildContext context) {
+    return MediaQuery.of(context).size.width <
+        600; // Adjust breakpoint if needed
   }
 
   @override
@@ -135,6 +141,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
+    if (!mounted) return;
     scrollController.dispose();
     super.dispose();
   }

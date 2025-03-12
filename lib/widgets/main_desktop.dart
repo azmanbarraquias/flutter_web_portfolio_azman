@@ -59,10 +59,7 @@ class MainDesktop extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              Theme.of(
-                                context,
-                              ).primaryColor, // Button background color
+                          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
                           foregroundColor: Colors.white, // Text color
                           padding: EdgeInsets.symmetric(
                             horizontal: 32,
@@ -82,7 +79,7 @@ class MainDesktop extends StatelessWidget {
                           foregroundColor: Colors.white,
                           // Text color
                           side: BorderSide(
-                            color: Theme.of(context).primaryColor,
+                            color:  Theme.of(context).colorScheme.primaryContainer,
                             width: 5,
                           ),
                           // Add

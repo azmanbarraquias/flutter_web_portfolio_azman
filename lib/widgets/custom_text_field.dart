@@ -8,17 +8,21 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     this.maxLines = 1,
     required this.hintText,
+    this.keyboardType,
   });
 
   final TextEditingController controller;
   final int? maxLines;
   final String hintText;
+  final TextInputType? keyboardType;
+
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
       maxLines: maxLines,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(16),
         filled: true,

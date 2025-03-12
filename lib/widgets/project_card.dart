@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'dart:js_interop';
 
 import '../constants/colors.dart';
 import '../utils/project_utils.dart';
-import 'dart:js' as js;
+
+@JS('window.open') // Bind to JavaScript's window.open() function
+external void openUrl(String url);
 
 class ProjectCard extends StatelessWidget {
   const ProjectCard({super.key, required this.projectUtils});
@@ -67,7 +70,7 @@ class ProjectCard extends StatelessWidget {
                 // if(projectUtils.iosLink != null)
                 InkWell(
                   onTap: () {
-                    js.context.callMethod("open", ["https://www.google.com/"]);
+                    openUrl("https://www.google.com/");
                   },
                   child: Icon(
                     Icons.apple,
@@ -75,7 +78,6 @@ class ProjectCard extends StatelessWidget {
                     color: CustomColor.whitePrimary,
                   ),
                 ),
-                // if(projectUtils.androidLink != null)
                 InkWell(
                   onTap: () {},
                   child: Icon(
@@ -84,7 +86,6 @@ class ProjectCard extends StatelessWidget {
                     color: CustomColor.whiteSecondary,
                   ),
                 ),
-                // if(projectUtils.webLink != null)
                 InkWell(
                   onTap: () {},
                   child: Icon(

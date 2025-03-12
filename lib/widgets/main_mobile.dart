@@ -52,9 +52,7 @@ class MainMobile extends StatelessWidget {
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
-                    Theme.of(
-                      context,
-                    ).primaryColor, // Button background color
+                        Theme.of(context).colorScheme.primaryContainer,
                     foregroundColor: Colors.white, // Text color
                   ),
                   child: Text('Get in touch'),
@@ -70,7 +68,7 @@ class MainMobile extends StatelessWidget {
                     foregroundColor: Colors.white,
                     // Text color
                     side: BorderSide(
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).colorScheme.primaryContainer,
                       width: 2,
                     ),
                     // Add
