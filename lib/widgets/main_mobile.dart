@@ -14,11 +14,10 @@ class MainMobile extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
-      height: screenHeight / 1,
-      constraints: BoxConstraints(minHeight: 730),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Image.asset("assets/CatImageDev.png", width: screenWidth),
           Text(
@@ -57,10 +56,6 @@ class MainMobile extends StatelessWidget {
                       context,
                     ).primaryColor, // Button background color
                     foregroundColor: Colors.white, // Text color
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 32,
-                      vertical: 25,
-                    ), // Button padding
                   ),
                   child: Text('Get in touch'),
                 ),
@@ -76,13 +71,9 @@ class MainMobile extends StatelessWidget {
                     // Text color
                     side: BorderSide(
                       color: Theme.of(context).primaryColor,
-                      width: 5,
+                      width: 2,
                     ),
                     // Add
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 32,
-                      vertical: 25,
-                    ), // Button padding
                   ),
                   child: Text('Download CV'),
                 ),
