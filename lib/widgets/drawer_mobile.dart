@@ -23,7 +23,7 @@ class DrawerMobile extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                icon: Icon(Icons.close),
+                icon: Icon(Icons.close, color: CustomColor.whitePrimary),
               ),
             ),
           ),
@@ -38,8 +38,14 @@ class DrawerMobile extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
-              leading: Icon(navItems[i].navIcon),
-              title: Text(navItems[i].navTitle),
+              leading: Icon(
+                navItems[i].navIcon,
+                color: CustomColor.whitePrimary,
+              ),
+              title: Text(
+                navItems[i].navTitle,
+                style: TextStyle(color: CustomColor.whitePrimary),
+              ),
             );
           }),
         ],

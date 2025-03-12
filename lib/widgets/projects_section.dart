@@ -29,17 +29,14 @@ class ProjectsSection extends StatelessWidget {
 
           SizedBox(height: 50),
           // Work projects cards
-          Container(
-            constraints: BoxConstraints(maxWidth: 900),
-            child: Wrap(
-              spacing: 25,
-              runSpacing: 25,
-              children: [
-                ...List.generate(hobbyProject.length, (i) {
-                  return ProjectCard(projectUtils: hobbyProject[i]);
-                }),
-              ],
-            ),
+          Wrap(
+            spacing: 25,
+            runSpacing: 25,
+            children: [
+              ...List.generate(workProject.length, (i) {
+                return ProjectCard(projectUtils: workProject[i]);
+              }),
+            ],
           ),
           SizedBox(height: 80),
 
@@ -55,17 +52,14 @@ class ProjectsSection extends StatelessWidget {
 
           SizedBox(height: 50),
           // Work projects cards
-          Container(
-            constraints: BoxConstraints(maxWidth: 900),
-            child: Wrap(
-              spacing: 25,
-              runSpacing: 25,
-              children: [
-                ...List.generate(hobbyProject.length, (i) {
-                  return ProjectCard(projectUtils: hobbyProject[i]);
-                }),
-              ],
-            ),
+          Wrap(
+            spacing: 25,
+            runSpacing: 25,
+            children: [
+              ...List.generate(hobbyProject.length, (i) {
+                return ProjectCard(projectUtils: hobbyProject[i]);
+              }),
+            ],
           ),
         ],
       ),

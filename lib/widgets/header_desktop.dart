@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_portfolio_azman/widgets/hover_underline_button.dart';
 import 'package:flutter_web_portfolio_azman/widgets/site_logo.dart';
 
 import '../constants/colors.dart';
 import '../constants/nav_items.dart';
+import '../pages/styles/styles.dart';
 
 class HeaderDesktop extends StatelessWidget {
   const HeaderDesktop({super.key, this.onLogoTap, required this.onNavItemTap});
@@ -14,16 +16,9 @@ class HeaderDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 60,
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       padding: EdgeInsets.symmetric(horizontal: 30),
       width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        color: CustomColor.bgLight1,
-        gradient: LinearGradient(
-          colors: [CustomColor.bgLight1, CustomColor.bgLight1],
-        ),
-      ),
+      decoration: kHeaderDecoration,
       child: Row(
         children: [
           SiteLogo(onTap: onLogoTap),

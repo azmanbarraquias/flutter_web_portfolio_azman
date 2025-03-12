@@ -33,7 +33,7 @@ class SkillsMobile extends StatelessWidget {
                       // colorFilter: const ColorFilter.mode(
                       //     Colors.white, BlendMode.srcIn),
                     ),
-                    title: Text(platformItem[i].title),
+                    title: Text(platformItem[i].title, style: TextStyle(color: CustomColor.whitePrimary),),
                   ),
                 );
               }),
@@ -49,30 +49,10 @@ class SkillsMobile extends StatelessWidget {
                 return Chip(
                   padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   backgroundColor: CustomColor.bgLight2,
-                  label: Text(programmingLang[i].title),
-                  avatar: ShaderMask(
-                    shaderCallback: (Rect bounds) {
-                      return programmingLang[i].unlock == false
-                          ? LinearGradient(
-                            colors: [
-                              CustomColor.scaffoldBg.withValues(alpha: 0.9),
-                              CustomColor.scaffoldBg.withAlpha(
-                                (0.9 * 255).toInt(),
-                              ),
-                            ],
-                          ).createShader(bounds)
-                          : LinearGradient(
-                            colors: [
-                              CustomColor.scaffoldBg.withValues(alpha: 0),
-                              CustomColor.scaffoldBg.withValues(alpha: 0),
-                            ],
-                          ).createShader(bounds);
-                    },
-                    blendMode: BlendMode.srcATop,
-                    child: SvgPicture.asset(
-                      programmingLang[i].svgIcon,
-                      height: 26,
-                    ),
+                  label: Text(programmingLang[i].title, style: TextStyle(color: CustomColor.whitePrimary),),
+                  avatar: SvgPicture.asset(
+                    programmingLang[i].svgIcon,
+                    height: 26,
                   ),
                 );
               }),

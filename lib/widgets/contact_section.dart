@@ -46,7 +46,7 @@ class ContactSection extends StatelessWidget {
             constraints: BoxConstraints(maxWidth: 700),
             child: CustomTextField(
               controller: TextEditingController(),
-              hintText: 'Your message',
+              hintText: 'Let\'s talk about...',
               maxLines: 16,
             ),
           ),
@@ -57,7 +57,16 @@ class ContactSection extends StatelessWidget {
             constraints: BoxConstraints(maxWidth: 700),
             child: ElevatedButton(
               onPressed: () {},
-              child: Text("Get in touch"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    Theme.of(context).primaryColor, // Button background color
+                foregroundColor: Colors.white, // Text color
+                padding: EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 25,
+                ), // Button padding
+              ),
+              child: Text("Send Message"),
             ),
           ),
 
@@ -70,6 +79,27 @@ class ContactSection extends StatelessWidget {
 
           SizedBox(height: 30),
 
+          Container(
+            width: double.maxFinite,
+            constraints: BoxConstraints(maxWidth: 500),
+            child: Column(
+              spacing: 5,
+              children: [
+                Text("Let's Connect",  style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize:  20,
+                  color: CustomColor.whitePrimary,
+                ),),
+                Text(
+                  "I'm currently looking for new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!",  style: TextStyle(
+                  fontSize: 17,
+                  color: CustomColor.whiteSecondary,
+                ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 30),
           // links profile
           Wrap(
             spacing: 12,
@@ -83,7 +113,6 @@ class ContactSection extends StatelessWidget {
                   height: 26,
                 ),
               ),
-              SvgPicture.asset(programmingLang.first.svgIcon, height: 26),
               SvgPicture.asset(programmingLang.first.svgIcon, height: 26),
             ],
           ),
@@ -105,7 +134,7 @@ class ContactSection extends StatelessWidget {
         Flexible(
           child: CustomTextField(
             controller: TextEditingController(),
-            hintText: 'Your email',
+            hintText: 'your@email.com',
           ),
         ),
       ],
@@ -125,7 +154,7 @@ class ContactSection extends StatelessWidget {
         Flexible(
           child: CustomTextField(
             controller: TextEditingController(),
-            hintText: 'Your email',
+            hintText: 'your@email.com',
           ),
         ),
       ],

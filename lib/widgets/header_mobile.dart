@@ -14,7 +14,6 @@ class HeaderMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      margin: EdgeInsets.fromLTRB(40, 5, 20, 5),
       padding: EdgeInsets.symmetric(horizontal: 30).copyWith(right: 0),
       decoration: kHeaderDecoration,
       child: Row(

@@ -12,8 +12,8 @@ class ProjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 290,
-      width: 260,
+      height: 500,
+      width: 500,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -24,8 +24,8 @@ class ProjectCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.asset(
-            height: 140,
-            width: 260,
+            height: 300,
+            width: 500,
             fit: BoxFit.cover,
             projectUtils.image,
           ),
@@ -39,15 +39,18 @@ class ProjectCard extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(12, 0, 12, 12),
-            child: Text(
-              overflow: TextOverflow.ellipsis,
-              projectUtils.subtitle,
-              style: TextStyle(fontSize: 10, color: CustomColor.whiteSecondary),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(12, 0, 12, 0),
+              child: Text(
+                projectUtils.subtitle,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: CustomColor.whiteSecondary,
+                ),
+              ),
             ),
           ),
-          Spacer(),
           Container(
             color: CustomColor.bgLight1,
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -66,14 +69,29 @@ class ProjectCard extends StatelessWidget {
                   onTap: () {
                     js.context.callMethod("open", ["https://www.google.com/"]);
                   },
-                  child: Icon(Icons.apple, size: 20),
+                  child: Icon(
+                    Icons.apple,
+                    size: 20,
+                    color: CustomColor.whitePrimary,
+                  ),
                 ),
                 // if(projectUtils.androidLink != null)
-                InkWell(onTap: () {}, child: Icon(Icons.android, size: 20)),
+                InkWell(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.android,
+                    size: 20,
+                    color: CustomColor.whiteSecondary,
+                  ),
+                ),
                 // if(projectUtils.webLink != null)
                 InkWell(
                   onTap: () {},
-                  child: Icon(Icons.language_outlined, size: 20),
+                  child: Icon(
+                    Icons.language_outlined,
+                    size: 20,
+                    color: CustomColor.whiteSecondary,
+                  ),
                 ),
               ],
             ),

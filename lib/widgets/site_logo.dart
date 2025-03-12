@@ -12,12 +12,12 @@ class SiteLogo extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Text(
-        'AZUMA',
+        'Dev_AZUMA',
         style: TextStyle(
-          fontSize: 22,
+          fontSize: 25,
+          color: Theme.of(context).colorScheme.primary,
           fontWeight: FontWeight.bold,
           // decoration: TextDecoration.underline,
-          color: CustomColor.yellowSecondary,
         ),
       ),
     );

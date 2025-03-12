@@ -17,6 +17,7 @@ class SkillsDesktop extends StatelessWidget {
           child: Wrap(
             spacing: 5,
             runSpacing: 5,
+            alignment: WrapAlignment.center,
             children: [
               ...List.generate(platformItem.length, (i) {
                 return Container(
@@ -36,7 +37,10 @@ class SkillsDesktop extends StatelessWidget {
                       // colorFilter: const ColorFilter.mode(
                       //     Colors.white, BlendMode.srcIn),
                     ),
-                    title: Text(platformItem[i].title),
+                    title: Text(
+                      platformItem[i].title,
+                      style: TextStyle(color: CustomColor.whitePrimary),
+                    ),
                   ),
                 );
               }),
@@ -56,9 +60,11 @@ class SkillsDesktop extends StatelessWidget {
                   return Chip(
                     padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                     elevation: 2,
-                    // Add shadow
                     backgroundColor: CustomColor.bgLight2,
-                    label: Text(programmingLang[i].title),
+                    label: Text(
+                      programmingLang[i].title,
+                      style: TextStyle(color: CustomColor.whitePrimary),
+                    ),
                     avatar: SvgPicture.asset(
                       programmingLang[i].svgIcon,
                       height: 26,
