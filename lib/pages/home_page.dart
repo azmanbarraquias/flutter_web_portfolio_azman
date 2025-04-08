@@ -32,10 +32,6 @@ class _HomePageState extends State<HomePage> {
     scrollController.addListener(_onScroll);
   }
 
-  bool isMobile(BuildContext context) {
-    return MediaQuery.of(context).size.width <
-        600; // Adjust breakpoint if needed
-  }
 
   @override
   Widget build(BuildContext context) {
