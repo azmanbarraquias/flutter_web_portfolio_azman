@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'dart:js_interop';
+
 
 import '../constants/colors.dart';
 import '../utils/project_utils.dart';
 
 @JS('window.open') // Bind to JavaScript's window.open() function
 external void openUrl(String url);
+
+
 
 class ProjectCard extends StatelessWidget {
   const ProjectCard({super.key, required this.projectUtils});
@@ -26,12 +30,35 @@ class ProjectCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Image.asset(
-            height: 300,
-            width: 500,
-            fit: BoxFit.cover,
-            projectUtils.image,
+          InkWell(
+            onTap: () => _showImagePopup(context, projectUtils.image),
+            child: Image.network(
+              width: 500,
+              height: 300,
+              fit: BoxFit.cover,
+              projectUtils.image,
+              headers: {
+                'Accept': 'image/webp', // Ensures WebP support if available
+              },
+              errorBuilder: (context, error, stackTrace) {
+                return SizedBox(
+                  width: 500,
+                  height: 300,
+                  child: const Placeholder(),
+                ); // Fallback if image fails to load
+              },
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const CircularProgressIndicator(); // Shows loading indicator
+              },
+            ),
           ),
+          // Image.asset(
+          //   height: 300,
+          //   width: 500,
+          //   fit: BoxFit.cover,
+          //   projectUtils.image,
+          // ),
           Padding(
             padding: EdgeInsets.fromLTRB(12, 15, 12, 12),
             child: Text(
@@ -68,37 +95,81 @@ class ProjectCard extends StatelessWidget {
                 ),
                 Spacer(),
                 // if(projectUtils.iosLink != null)
+                // InkWell(
+                //   onTap: () {
+                //     openUrl("https://www.google.com/");
+                //   },
+                //   child: Icon(
+                //     Icons.apple,
+                //     size: 20,
+                //     color: CustomColor.whitePrimary,
+                //   ),
+                // ),
+                // InkWell(
+                //   onTap: () {},
+                //   child: Icon(
+                //     Icons.android,
+                //     size: 20,
+                //     color: CustomColor.whiteSecondary,
+                //   ),
+                // ),
                 InkWell(
                   onTap: () {
-                    openUrl("https://www.google.com/");
+                    openUrl(projectUtils.webLink!);
                   },
-                  child: Icon(
-                    Icons.apple,
-                    size: 20,
-                    color: CustomColor.whitePrimary,
-                  ),
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.android,
-                    size: 20,
-                    color: CustomColor.whiteSecondary,
-                  ),
-                ),
-                InkWell(
-                  onTap: () {},
                   child: Icon(
                     Icons.language_outlined,
                     size: 20,
                     color: CustomColor.whiteSecondary,
                   ),
                 ),
+                // SvgPicture.asset(
+                //   height: 20,
+                //   width: 20,
+                //   'assets/svg/github-original.svg',
+                //   colorFilter: ColorFilter.mode(CustomColor.whiteSecondary, BlendMode.srcIn),
+                // )
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  // The popup function
+  void _showImagePopup(BuildContext context, String imageUrl) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: GestureDetector(
+            onTap: () => Navigator.of(context).pop(),
+            child: InteractiveViewer(
+              panEnabled: true,
+              minScale: 0.5,
+              maxScale: 4.0,
+              child: Image.network(
+                imageUrl,
+                headers: {
+                  'Accept': 'image/webp', // Ensures WebP support if available
+                },
+                errorBuilder: (context, error, stackTrace) {
+                  return SizedBox(
+                    width: 500,
+                    height: 300,
+                    child: const Placeholder(),
+                  ); // Fallback if image fails to load
+                },
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const CircularProgressIndicator(); // Shows loading indicator
+                },
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

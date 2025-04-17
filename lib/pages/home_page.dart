@@ -83,9 +83,13 @@ class _HomePageState extends State<HomePage> {
                     ),
 
                   if (constraints.maxWidth >= kMinDesktopWidth)
-                    MainDesktop()
+                    MainDesktop(inTouchPress: (){
+                      scrollToSection(3);
+                    },)
                   else
-                    MainMobile(),
+                    MainMobile(inTouchPress: (){
+                      scrollToSection(3);
+                    },),
 
                   // Skills
                   SizedBox(key: navbarKeys[1]),

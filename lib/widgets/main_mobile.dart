@@ -4,7 +4,10 @@ import '../constants/colors.dart';
 import 'blink_effect.dart';
 
 class MainMobile extends StatelessWidget {
-  const MainMobile({super.key});
+  const MainMobile({super.key, this.inTouchPress});
+
+  final Function()? inTouchPress;
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,9 @@ class MainMobile extends StatelessWidget {
               SizedBox(
                 width: 250,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    inTouchPress!();
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         Theme.of(context).colorScheme.primaryContainer,

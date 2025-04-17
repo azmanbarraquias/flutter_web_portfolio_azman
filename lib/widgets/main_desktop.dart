@@ -3,8 +3,37 @@ import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import 'blink_effect.dart';
 
+import 'dart:js_interop';
+
+@JS('document.createElement')
+external JSAny _createElement(String tag);
+
+@JS('document.body.appendChild')
+external void _appendToBody(JSAny element);
+
+@JS()
+@staticInterop
+class HTMLAnchorElement {}
+
+extension HTMLAnchorElementExtension on HTMLAnchorElement {
+  external set href(String value);
+
+  external set download(String value);
+
+  external void click();
+}
+
 class MainDesktop extends StatelessWidget {
-  const MainDesktop({super.key});
+  const MainDesktop({super.key, this.inTouchPress});
+
+  final Function()? inTouchPress;
+
+  void downloadFileFromGithub(String url, String filename) {
+    final anchor = _createElement('a') as HTMLAnchorElement;
+    anchor.href = url;
+    anchor.download = filename;
+    anchor.click();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +86,12 @@ class MainDesktop extends StatelessWidget {
                     SizedBox(
                       width: 250,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          inTouchPress!();
+                        },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primaryContainer,
                           foregroundColor: Colors.white, // Text color
                           padding: EdgeInsets.symmetric(
                             horizontal: 32,
@@ -72,14 +104,20 @@ class MainDesktop extends StatelessWidget {
                     SizedBox(
                       width: 250,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          downloadFileFromGithub(
+                            "https://azmanbarraquias.github.io/assets/assets/pdf/Barraquias_Azman_Resume_2025.pdf",
+                            "Barraquias_Azman_Resume_2025.pdf",
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.transparent,
                           // Button background color
                           foregroundColor: Colors.white,
                           // Text color
                           side: BorderSide(
-                            color:  Theme.of(context).colorScheme.primaryContainer,
+                            color:
+                                Theme.of(context).colorScheme.primaryContainer,
                             width: 5,
                           ),
                           // Add

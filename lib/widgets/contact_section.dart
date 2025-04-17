@@ -72,14 +72,20 @@ class _ContactSectionState extends State<ContactSection> {
             _buildTextField(_emailController, "Your Email", email: true),
             _buildTextField(_messageController, "Message", maxLines: 15),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                _sendEmail(context);
-              },
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+            Container(
+              width: double.infinity,
+              constraints: BoxConstraints(maxWidth: 700),
+              child: ElevatedButton(
+                onPressed: () {
+                  _sendEmail(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                  backgroundColor: Colors.deepPurple, // Button background color
+                  foregroundColor: Colors.white,
+                ),
+                child: Text("Send Message"),
               ),
-              child: Text("Send Message"),
             ),
           ],
         ),
@@ -99,13 +105,35 @@ class _ContactSectionState extends State<ContactSection> {
       child: TextFormField(
         controller: controller,
         keyboardType: email ? TextInputType.emailAddress : TextInputType.text,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         decoration: InputDecoration(
           labelText: label,
-          border: OutlineInputBorder( // Optional: Add border styling
+          fillColor: Colors.white,
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          filled: true,
+          border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none, // Removes default border
+            borderSide: BorderSide.none, // No border
           ),
-          alignLabelWithHint: true ,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.primaryContainer,
+              width: 1,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.red, width: 1),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.red, width: 1),
+          ),
         ),
         maxLines: maxLines,
         validator: (value) {
