@@ -70,7 +70,7 @@ class _ContactSectionState extends State<ContactSection> {
             SizedBox(height: 20),
             _buildTextField(_nameController, "Your Name"),
             _buildTextField(_emailController, "Your Email", email: true),
-            _buildTextField(_messageController, "Message", maxLines: 15),
+            _buildTextField(_messageController, "Your Message . . .", maxLines: 15),
             SizedBox(height: 20),
             Container(
               width: double.infinity,

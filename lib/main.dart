@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio_azman/pages/home_page.dart';
-import 'dart:html' as html;
 
 import 'dart:js_interop';
 

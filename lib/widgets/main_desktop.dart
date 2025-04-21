@@ -106,7 +106,7 @@ class MainDesktop extends StatelessWidget {
                       child: TextButton(
                         onPressed: () {
                           downloadFileFromGithub(
-                            "https://azmanbarraquias.github.io/assets/assets/pdf/Barraquias_Azman_Resume_2025.pdf",
+                            "https://drive.google.com/uc?export=download&id=1ouoyVDVAkDkeed3zZfXvDu9SMonD3Eit",
                             "Barraquias_Azman_Resume_2025.pdf",
                           );
                         },
