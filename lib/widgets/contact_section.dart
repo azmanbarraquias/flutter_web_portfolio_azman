@@ -70,7 +70,11 @@ class _ContactSectionState extends State<ContactSection> {
             SizedBox(height: 20),
             _buildTextField(_nameController, "Your Name"),
             _buildTextField(_emailController, "Your Email", email: true),
-            _buildTextField(_messageController, "Your Message . . .", maxLines: 15),
+            _buildTextField(
+              _messageController,
+              "Your Message . . .",
+              maxLines: 15,
+            ),
             SizedBox(height: 20),
             Container(
               width: double.infinity,
@@ -104,11 +108,16 @@ class _ContactSectionState extends State<ContactSection> {
       padding: EdgeInsets.symmetric(vertical: 8),
       child: TextFormField(
         controller: controller,
+        style: TextStyle(color: CustomColor.scaffoldBg),
         keyboardType: email ? TextInputType.emailAddress : TextInputType.text,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         decoration: InputDecoration(
           labelText: label,
           fillColor: Colors.white,
+          labelStyle: TextStyle(
+            color: Theme.of(context).colorScheme.primaryContainer,
+          ),
+          // Changes label color to blue
           floatingLabelBehavior: FloatingLabelBehavior.never,
           filled: true,
           border: OutlineInputBorder(
